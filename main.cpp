@@ -9,11 +9,11 @@ int main(int argc, char** argv) {
 	ofstream wynik("wynik.txt"); // plik wynikowy - output
 	int ilosc_pomiarow = 1;
 	if (!plik.is_open()) {
-		cout << "B³¹d dostêpu do pliku dane.txt\n";
+		cout << "Blad dostêpu do pliku dane.txt\n";
 		return 1;
 	}
 	if (!wynik.is_open()) {
-		cout << "B³¹d dostêpu do pliku wynik.txt\n";
+		cout << "Blad dostêpu do pliku wynik.txt\n";
 		return 2;
 	}
 	string dane;
@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
 			wynik << dane[11] << dane[12] << "s\n"; // sekundy
 
 			// szerokosc_geo
-			wynik << "Szerokoœæ geograficzna : ";
+			wynik << "Szerokosc geograficzna : ";
 			int geopos = dane.find(',', 12);
 
 			wynik << dane[geopos + 1] << dane[geopos + 2] << "d "; // stopnie
@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 			geopos = dane.find(',', geopos + 1) + 1;
 			wynik << " " << dane[geopos] << endl; // wyœwietlenie pó³kuli
 
-			wynik << "D³ugoœæ geograficzna : ";
+			wynik << "D³ugosc geograficzna : ";
 			geopos = dane.find(',', geopos + 1);
 			wynik << dane[geopos + 2] << dane[geopos + 3] << "d "; // stopnie
 			wynik << dane[geopos + 4] << dane[geopos + 5] << "' "; // minuty
