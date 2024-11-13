@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <fstream> // do obs³ugi plików
+#include <fstream> // do obslugi plikow
 using namespace std;
 
 int main(int argc, char** argv) {
-	ifstream plik("dane.txt");	// plik Ÿród³owy - input
-	ofstream wynik("wynik.txt"); // plik wynikowy - output
+	ifstream plik("dane.txt");	// plik - input
+	ofstream wynik("wynik.txt"); // plik - output
 	int ilosc_pomiarow = 1;
 	if (!plik.is_open()) {
 		cout << "Blad dostêpu do pliku dane.txt\n";
@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
 	string dane;
 	while (getline(plik, dane) && plik.eof() == false) { // funkcja eof() sprawdza czy osi¹gniêto koniec pliku
 		// przetwarzanie
-		if (dane.find("$GPGGA") != string::npos) { // zwrócone 'npos' oznacza ¿e nie znaleziono ci¹gu
+		if (dane.find("$GPGGA") != string::npos) { // zwrocone 'npos' oznacza ze nie znaleziono ciagu
 			wynik << "Pomiar " << ilosc_pomiarow++ << endl; // zapis do pliku numeru pomiaru
 			wynik << "Czas wykonania pomiaru: ";
 			// zapis godziny
@@ -43,9 +43,9 @@ int main(int argc, char** argv) {
 			wynik << ((s * 60) - (int)(s * 60) > 0.5 ? (int)(s * 60) + 1 : (int)(s * 60)); // sekundy
 			// operator trojargumentowy : (warunek) ? : jesli_prawda : jesli_falsz
 			geopos = dane.find(',', geopos + 1) + 1;
-			wynik << " " << dane[geopos] << endl; // wyœwietlenie pó³kuli
+			wynik << " " << dane[geopos] << endl; // wyœwietlenie 
 
-			wynik << "D³ugosc geograficzna : ";
+			wynik << "Dlugosc geograficzna : ";
 			geopos = dane.find(',', geopos + 1);
 			wynik << dane[geopos + 2] << dane[geopos + 3] << "d "; // stopnie
 			wynik << dane[geopos + 4] << dane[geopos + 5] << "' "; // minuty
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 			s = atof(sek.c_str()); // atoi() zamienia const char * na int
 			wynik << ((s * 60) - (int)(s * 60) > 0.5 ? (int)(s * 60) + 1 : (int)(s * 60)); // sekundy
 			geopos = dane.find(',', geopos + 1) + 1;
-			wynik << " " << dane[geopos] << endl; // wyœwietlenie pó³kuli
+			wynik << " " << dane[geopos] << endl; // wyswietlanie 
 
 			wynik << "\n";
 		}
